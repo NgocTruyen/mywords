@@ -477,10 +477,12 @@ button[type="submit"]:active,
   background: var(--white);
   padding: 30px;
   border-radius: 12px;
-  max-width: 700px;
-  max-height: 80vh;
+  max-width: 1000px;
+  max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .close-modal {
@@ -500,6 +502,7 @@ button[type="submit"]:active,
 #modalDateTitle {
   margin-top: 0;
   color: var(--primary);
+  order: 1;
 }
 
 .modal-stats {
@@ -509,6 +512,7 @@ button[type="submit"]:active,
   padding: 15px;
   background: rgba(74, 144, 226, 0.05);
   border-radius: 6px;
+  order: 3;
 }
 
 .modal-stats div {
@@ -521,15 +525,21 @@ button[type="submit"]:active,
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 1.6;
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
   padding: 15px;
   background: var(--bg);
   border-radius: 6px;
+  order: 2;
 }
 
 .toggle-btn {
   display: none;
+}
+
+#editEntryBtn {
+  order: 4;
+  align-self: flex-start;
 }
 
 /* Mobile Responsive */
