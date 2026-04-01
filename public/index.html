@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyWords - 750 Words Journal</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>📔 MyWords</h1>
+      <p>Viết 750 từ mỗi ngày</p>
+      <div class="today-date" id="todayDate"></div>
+    </header>
+
+    <main>
+      <!-- Writer Section -->
+      <section class="entry-form">
+        <div class="form-header">
+          <h2>✍️ Viết nhật ký</h2>
+          <button class="toggle-btn dark-mode-toggle" id="darkModeToggle" title="Dark Mode">🌙</button>
+        </div>
+
+        <form id="journalForm">
+          <input type="date" id="entryDate" required>
+          <div class="textarea-wrapper">
+            <textarea id="journalEntry" placeholder="Hôm nay có gì trong đầu bạn...?" rows="10"></textarea>
+            <div class="word-counter">
+              <span id="wordCounterDisplay">0 / 750 từ</span>
+              <span id="goalStatus"></span>
+            </div>
+          </div>
+          <button type="submit" id="saveBtn">💾 Lưu</button>
+          <button type="button" id="backToTodayBtn" style="display: none;">← Quay lại hôm nay</button>
+          <div id="saveStatus" class="save-status"></div>
+        </form>
+      </section>
+
+      <!-- Main Layout -->
+      <div class="main-layout">
+        <!-- Stats Panel (Hidden on Mobile) -->
+        <aside class="stats-panel" id="statsPanel">
+          <div class="stats-header">
+            <h3>📊 Thống kê</h3>
+            <button class="toggle-btn" id="statsToggleMobile" title="Đóng">✕</button>
+          </div>
+
+          <div class="stat-group">
+            <div class="stat-item">
+              <span class="stat-label">🔥 Streak:</span>
+              <span class="stat-value" id="streakDisplay">0 ngày</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">📝 Từ:</span>
+              <span class="stat-value" id="statWords">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">😊 Tâm trạng:</span>
+              <span class="stat-value" id="statMood">😐 Trung tính</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">⏱️ Thời gian:</span>
+              <span class="stat-value" id="statTime">0 giây</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">⏸️ Tạm dừng:</span>
+              <span class="stat-value" id="statPauses">0 lần</span>
+            </div>
+          </div>
+
+          <!-- Badges -->
+          <div class="badges-section">
+            <h4>🏆 Badges</h4>
+            <div class="badges-container" id="badgesContainer"></div>
+          </div>
+
+          <!-- Calendar Section -->
+          <div class="calendar-section">
+            <div class="calendar-header">
+              <button class="cal-nav-btn" id="prevMonthBtn">◀</button>
+              <span id="monthYearDisplay" class="month-year"></span>
+              <button class="cal-nav-btn" id="nextMonthBtn">▶</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
+        </aside>
+
+        <!-- Journal List -->
+        <section class="entry-view">
+          <div class="list-header">
+            <h2>📖 Nhật ký đã lưu</h2>
+            <button class="toggle-btn" id="calendarToggleMobile" title="Mở lịch">📅</button>
+          </div>
+          <div id="journalList" class="journal-list"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for viewing entries -->
+  <div id="entryModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 id="modalDateTitle"></h2>
+      <div id="modalStats" class="modal-stats"></div>
+      <div id="modalContent" class="modal-text"></div>
+      <button id="editEntryBtn" class="btn-primary">✏️ Chỉnh sửa</button>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
