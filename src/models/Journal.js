@@ -1,7 +1,7 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import config from '../../config/config.js';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
 let db = null;
@@ -10,8 +10,10 @@ export async function initDatabase() {
   if (db) return db;
 
   // Create data directory if not exists
-  if (!fs.existsSync(config.dataDir)) {
-    fs.mkdirSync(config.dataDir, { recursive: true });
+  try {
+    await fs.mkdir(config.dataDir, { recursive: true });
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err;
   }
 
   db = await open({
