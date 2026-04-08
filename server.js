@@ -3,7 +3,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import config from './config/config.js';
 import Journal from './src/models/Journal.js';
+import User from './src/models/User.js';
 import journalRoutes from './src/routes/journal.js';
+import authRoutes from './src/routes/auth.js';
 
 const app = express();
 
@@ -14,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // API Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/journal', journalRoutes);
 
 // Health check
@@ -41,6 +44,7 @@ app.use((err, req, res, next) => {
 async function start() {
   try {
     await Journal.initDatabase();
+    await User.initUsersTable();
     console.log('✅ Database initialized');
 
     app.listen(config.port, () => {

@@ -15,4 +15,5 @@ export default {
   dbPath: process.env.DB_PATH || path.join(projectRoot, 'data', 'journal.db'),
   dataDir: path.join(projectRoot, 'data'),
   publicDir: path.join(projectRoot, 'public'),
+  jwtSecret: process.env.JWT_SECRET || 'mywords-secret-key-change-in-production',
 };
